@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <span>Total clicks: 0</span>
-    <button id="btn">Click me</button>
+    <div id="root"></div>
   </body>
-  <script>
+  <!-- React JS: 어플리케이션이 아주 interactive하도록 만들어주는 라이브러리 (=엔진) -->
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <!-- React-dom: library 또는 package 모든 React element들을 HTML body에 둘 수 있도록 해줌 -->
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+</script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
     let counter = 0;
-    const button = document.getElementById("btn");
-    const span = document.querySelector("span")
-    function handleClick() {
+    function countUp() {
       counter = counter + 1;
-      span.innerText = `Total clicks: ${counter}`;
+      render();
     }
-    button.addEventListener("click");
+    function render() {
+      ReactDOM.render(<Container />, root);
+    }
+    const Container = () => (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
+      </div>
+    );
+    render();
   </script>
 </html>
